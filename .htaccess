@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+
+    # force ssl
+    RewriteEngine on
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,QSA]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^/$
+    RewriteRule .* / [L,R=302]
+</IfModule>
